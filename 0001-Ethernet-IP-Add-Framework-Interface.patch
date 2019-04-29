@@ -1,0 +1,184 @@
+From 2b59239e18f746313e5018194ac348732e8923b9 Mon Sep 17 00:00:00 2001
+From: mtk16536 <Dufre.Wu@mediatek.com>
+Date: Mon, 29 Apr 2019 17:57:55 +0800
+Subject: [PATCH] Ethernet IP: Add Framework Interface
+
+Add Framework Interface
+Test: OK
+
+Change-Id: Iac9614286a98806262b101fdfafbcd4d4d66f9e0
+Signed-off-by: mtk16536 <Dufre.Wu@mediatek.com>
+CR-Id: AUTO00032286
+---
+ core/java/android/net/EthernetManager.java  | 139 ++++++++++++++++++++++++++++
+ core/java/android/net/IEthernetManager.aidl |   1 +
+ 2 files changed, 140 insertions(+)
+
+diff --git a/core/java/android/net/EthernetManager.java b/core/java/android/net/EthernetManager.java
+index ecccda5..038843a 100644
+--- a/core/java/android/net/EthernetManager.java
++++ b/core/java/android/net/EthernetManager.java
+@@ -33,6 +33,37 @@ import java.util.ArrayList;
+ public class EthernetManager {
+     private static final String TAG = "EthernetManager";
+     private static final int MSG_AVAILABILITY_CHANGED = 1000;
++	
++    /**
++     * @hide
++     */
++    public static final String ETHERNET_STATE_CHANGED_ACTION = "android.net.ethernet.ETHERNET_STATE_CHANGED";
++
++    /**
++     * @hide
++     */
++    public static final String EXTRA_ETHERNET_STATE = "ethernet_state";
++
++    /**
++     * @hide
++     */
++    public static final int ETHER_STATE_DISCONNECTED = 0;
++
++    /**
++     * @hide
++     */
++    public static final int ETHER_STATE_CONNECTING = 1;
++
++    /**
++     * @hide
++     */
++    public static final int ETHER_STATE_CONNECTED = 2;
++
++    /**
++     * @hide
++     */
++    public static final int ETHER_STATE_DISCONNECTING = 3;
++  
+ 
+     private final Context mContext;
+     private final IEthernetManager mService;
+@@ -171,4 +202,112 @@ public class EthernetManager {
+             }
+         }
+     }
++	
++    public int getEthernetCarrierState(String ifname) {
++		/*
++        try {
++            return mService.getEthernetCarrierState(ifname);
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++		return 0;
++    }
++
++    public String getEthernetMacAddress(String ifname) {
++		/*
++        try {
++            return mService.getEthernetMacAddress(ifname);
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++		return "";
++    }
++
++    public int getEthernetConnectState() {
++		/*
++        try {
++            return mService.getEthernetConnectState();
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++		return 0;
++    }
++
++    public String getIpAddress() {
++		/*
++        try {
++            return mService.getIpAddress();
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++		return "192.168.1.1";
++    }
++
++    public String getNetmask() {
++		/*
++        try {
++            return mService.getNetmask();
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++		return "255.255.255.0";
++    }
++
++    public String getGateway() {
++		/*
++        try {
++            return mService.getGateway();
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++		return "0.0.255.255";
++    }
++
++    public String getDns() {
++		/*
++        try {
++            return mService.getDns();
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++		return "0.0.0.0";
++    }
++
++    public String dumpCurrentState(int state) {
++		/*
++        try {
++            return mService.dumpCurrentState(state);
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++		return "";
++    }
++	
++    public void disconnect(String iface) {
++		/*
++        try {
++            mService.disconnect(iface);
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++		*/
++    }
++	
++	
++	public void updateIpConfiguration(String iface, IpConfiguration ipConfiguration){
++		try {
++            mService.updateIpConfiguration(iface, ipConfiguration);
++        } catch (RemoteException e) {
++            throw e.rethrowFromSystemServer();
++        }
++	}
++	
+ }
+diff --git a/core/java/android/net/IEthernetManager.aidl b/core/java/android/net/IEthernetManager.aidl
+index 94960b5..8e38a3a 100644
+--- a/core/java/android/net/IEthernetManager.aidl
++++ b/core/java/android/net/IEthernetManager.aidl
+@@ -32,4 +32,5 @@ interface IEthernetManager
+     boolean isAvailable(String iface);
+     void addListener(in IEthernetServiceListener listener);
+     void removeListener(in IEthernetServiceListener listener);
++	void updateIpConfiguration(String iface, in IpConfiguration ipConfiguration);
+ }
+-- 
+2.6.4
+
