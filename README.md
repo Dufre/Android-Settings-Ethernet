@@ -2,7 +2,7 @@
 Android 9.0, Add Ethernet Options on Settings.
 
 In Android 9.0, Default Settings is not have Ethernet Options(TV Settings have). 
-But sometimes, we need to choose Ethernet Mode(DHCP or Static IP).
+But sometimes, we need to choose Ethernet Mode(DHCP or Static IP), and edit Static IP Address.
 
 # Architecture
 - UI
@@ -48,3 +48,32 @@ Reference:
 - /frameworks/opt/net/ethernet/java/com/android/server/ethernet/EthernetServiceImpl.java
 - /frameworks/base/core/java/android/net/EthernetManager.java
 - /frameworks/base/core/java/android/net/IEthernetManager.aidl
+
+APP will call Framework API from EthernetManager, but this API implement in EthernetServiceImpl, and interface is IEthernetManager.aidl.
+
+For example, when APP need change Static IP, you need write *updateIPAddress()* function.
+
+EthernetManager.java
+```java
+void updateIPAddress(){
+  //mService is Proxy of EthernetServiceImpl
+  mService.updateIPAddress(); 
+}
+```
+
+IEthernetManager.aidl
+```java
+void updateIPAddress();
+```
+EthernetServiceImpl.java
+```java
+void updateIPAddress(){
+  /*
+  how to update
+  */
+}
+```
+
+
+
+
