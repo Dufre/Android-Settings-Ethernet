@@ -1,4 +1,4 @@
-# Android-Settings-Ethernet
+﻿# Android-Settings-Ethernet
 Android 9.0, Add Ethernet Options on Settings.
 
 In Android 9.0, Default Settings is not have Ethernet Options(TV Settings have). 
@@ -14,14 +14,16 @@ But sometimes, we need to choose Ethernet Mode(DHCP or Static IP), and edit Stat
 - Edit Static IP 
 
 ## Add Ethernet for Settings -> Network & internet -> Ethernet
-
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190429100512809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTEzOTE2Mjk=,size_16,color_FFFFFF,t_70)
 - xml(*/packages/apps/Settings/res/xml/network_and_internet.xml*)
 - icon(*/packages/apps/Settings/res/drawable/ic_ethernet.xml*  -- new file)
 - string.xml(*/packages/apps/Settings/res/values/strings.xml*)
 
 
 ## Add Ethernet Info (optional)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190429100547384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTEzOTE2Mjk=,size_16,color_FFFFFF,t_70)
 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190429100644713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTEzOTE2Mjk=,size_16,color_FFFFFF,t_70)
 ### res
 
 - xml(*/packages/apps/Settings/res/xml/ethernet_settings.xml* -- new file)
@@ -40,7 +42,7 @@ Reference:
 - EthernetSettings.java(new file)
 
 ## Edit Static IP
-
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190429100721222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTEzOTE2Mjk=,size_16,color_FFFFFF,t_70)
 
 
 
